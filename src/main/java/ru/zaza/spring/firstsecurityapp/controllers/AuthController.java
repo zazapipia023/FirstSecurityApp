@@ -15,7 +15,8 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/auth")
-public class AuthController {
+public class
+AuthController {
 
     private final PersonValidator personValidator;
     private final RegistrationService registrationService;
