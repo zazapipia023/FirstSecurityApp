@@ -16,21 +16,13 @@ import org.springframework.security.web.SecurityFilterChain;
 import ru.zaza.spring.firstsecurityapp.services.PersonDetailsService;
 
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
-
-    private final PersonDetailsService personDetailsService;
-
-    @Autowired
-    public SecurityConfig(PersonDetailsService personDetailsService) {
-        this.personDetailsService = personDetailsService;
-    }
-
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // Конфигурация Spring Security
         // Конфигурация авторизации
         http.authorizeRequests()
-                .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/auth/login", "/error", "/auth/registration").permitAll()
                 .anyRequest().hasAnyRole("USER", "ADMIN")
                 .and()
